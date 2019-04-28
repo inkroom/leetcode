@@ -9,11 +9,12 @@ import cn.inkroom.study.leetcode.data.ListNode;
  */
 public class ReverseLinkedList {
 
+
     public ListNode reverseList(ListNode head) {
 
 
         ListNode prev = null;
-        ListNode now=null;
+        ListNode now = null;
         //反转
         while (head != null) {
             now = head;

@@ -9,29 +9,13 @@ import cn.inkroom.study.leetcode.data.ListNode;
  */
 public class ReverseLinkedListII {
 
-    public ListNode reverseList(ListNode head, int count) {
+    /*
 
+    优秀写法，没有我的逻辑绕。重点只需要存一下前置节点，后面直接翻转就行，每次翻转把后续节点连上，省去最后处理流程
 
-        ListNode prev = null;
-        ListNode now = null;
-        int i = 0;
-        //反转
-        while (head != null && i < count) {
-            now = head;
-            head = head.next;
-
-            now.next = prev;
-            prev = now;
-            i++;
-        }
-
-        return now;
-
-    }
+     */
 
     public ListNode reverseBetween(ListNode head, int m, int n) {
-
-
         ListNode dummy = new ListNode(0);
         dummy.next = head;
         ListNode pre = dummy;
@@ -46,51 +30,81 @@ public class ReverseLinkedListII {
             pre.next = nex;
         }
         return dummy.next;
+    }
 
-//        ListNode prev = null;
-//        ListNode now = null;
+//    public ListNode reverseBetween(ListNode head, int left, int right) {
 //
-//        ListNode root = head;
-//        ListNode start = null;
-//        ListNode end = null;
-//        int i = 0;
-//        while (head != null) {
+//        ListNode nh = null, rh = head, nt = null, bf = null, f = null;
 //
-//            i++;
-//            now = head;
-//            head = head.next;
+//        int li = left - 1;
+//        int ri = right - 1;
 //
-//            if (i == m - 1) {//记录第一个翻转的前一个节点
-//                start = now;
-//            }
-//            if (i == m) {//记录第一个翻转的节点
-//                end = now;
-//            }
-//            if (i > m && i <= n) {//翻转
-//                now.next = prev;
-//            }
-//            if (i == n) {//最后一个节点
-//                if (end != null)
-//                    end.next = head;
-//                if (start != null)
-//                    start.next = now;
-//            }
 //
-//            prev = now;
+//        for (int i = 0; i < right; i++) {
+//
+//
+//            if (i == li) {// 第一个要翻转的节点
+//
+//                nt = head;
+//                nh = head;
+//
+//                bf = f;// 用于之后连接前面的节点
+//
+//
+//                head = head.next;
+//
+//            } else if (i == ri) {// 要翻转的最后一个节点
+//
+//                nt.next = head.next;
+//                head.next = nh;
+//                nh = head;
+//
+//                if (bf != null)
+//                    bf.next = nh;
+//                else {// 前面没有节点了
+//                    rh = nh;
+//                }
+//            } else if (i > li) {// 翻转
+//
+//                ListNode t = head.next;
+//
+//
+//                head.next = nh;
+//                nh = head;
+//
+//                head = t;
+//
+//
+//            } else {
+//                f = head;
+//                head = head.next;
+//            }
 //
 //
 //        }
-//        return root;
-    }
+//        return rh;
+//
+//
+//    }
 
     public static void main(String[] args) {
-        ListNode node = new cn.inkroom.study.leetcode.data.ListNode(1);
+        ListNode node, x;
+
+        node = new cn.inkroom.study.leetcode.data.ListNode(1);
         node.next = new cn.inkroom.study.leetcode.data.ListNode(2);
         node.next.next = new cn.inkroom.study.leetcode.data.ListNode(3);
         node.next.next.next = new cn.inkroom.study.leetcode.data.ListNode(4);
         node.next.next.next.next = new cn.inkroom.study.leetcode.data.ListNode(5);
 
-        System.out.println(new ReverseLinkedListII().reverseBetween(node, 2,4));
+        x = new ReverseLinkedListII().reverseBetween(node, 2, 4);
+        System.out.println(x);
+
+
+//        node = new cn.inkroom.study.leetcode.data.ListNode(3);
+//        node.next = new cn.inkroom.study.leetcode.data.ListNode(5);
+//
+//        x = new ReverseLinkedListII().reverseBetween(node, 1, 2);
+//        System.out.println(x);
 
     }
 }
